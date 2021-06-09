@@ -6,4 +6,9 @@ test-*.log
 hpctoolkit*/
 *.hpcstruct
 *.zip
+<<<<<<< HEAD
+>>>>>>> To be included in gpubootcamp as submodule for development
+=======
+*.out
+*.swp
 >>>>>>> To be included in gpubootcamp as submodule for development
