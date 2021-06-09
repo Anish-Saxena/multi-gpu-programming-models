@@ -1,0 +1,73 @@
+16 4
+rm -f jacobi jacobi_kernels.o *.qdrep jacobi.*.compute-sanitizer.log
+nvcc -DHAVE_CUB -lineinfo -gencode arch=compute_70,code=sm_70 -gencode arch=compute_80,code=sm_80 -gencode arch=compute_80,code=compute_80 -std=c++14 jacobi_kernels.cu -c
+mpicxx -DUSE_NVTX -I/gpfs/fs1/SHARE/Utils/CUDA/11.3.0.0_465.19.01/include -I/gpfs/fs1/SHARE/Utils/NCCL/2.9.9-1/GCC-10.3.0_CUDA-11.3.1.0_465.19.01/include -std=c++14 jacobi.cpp jacobi_kernels.o -L/gpfs/fs1/SHARE/Utils/CUDA/11.3.0.0_465.19.01/lib64 -lcudart -lnvToolsExt -lnccl -o jacobi
+rm: cannot remove 'hpctoolkit*': No such file or directory
+Single GPU jacobi relaxation: 1000 iterations on 16384 x 16384 mesh with norm check every 1 iterations
+    0, 31.999022
+  100, 0.897983
+  200, 0.535684
+  300, 0.395651
+  400, 0.319039
+  500, 0.269961
+  600, 0.235509
+  700, 0.209829
+  800, 0.189854
+  900, 0.173818
+Jacobi relaxation: 1000 iterations on 16384 x 16384 mesh with norm check every 1 iterations
+    0, 31.999023
+  100, 0.897983
+  200, 0.535685
+  300, 0.395651
+  400, 0.319039
+  500, 0.269961
+  600, 0.235510
+  700, 0.209829
+  800, 0.189854
+  900, 0.173818
+Num GPUs: 16.
+16384x16384: 1 GPU:   5.7294 s, 16 GPUs:   8.3197 s, speedup:     0.69, efficiency:     4.30 
+msg: begin serial analysis of 2eaa723b9a34939a4a962603362ce8f2.gpubin
+msg: end serial analysis of 2eaa723b9a34939a4a962603362ce8f2.gpubin
+msg: begin serial analysis of 33ff2e660b9cc21c66a95f3ef2af0264.gpubin
+msg: end serial analysis of 33ff2e660b9cc21c66a95f3ef2af0264.gpubin
+msg: STRUCTURE: /gpfs/fs1/anisaxena/multi-gpu-programming-models/nccl/jacobi
+msg: Line map : /lib/x86_64-linux-gnu/ld-2.27.so
+msg: Line map : /gpfs/fs1/anisaxena/spack/opt/spack/linux-ubuntu18.04-x86_64/gcc-7.5.0/hpctoolkit-2021.03.01-ldibk7erkgwxmpbptvfdiybvskgtiiap/lib/hpctoolkit/libhpcrun.so
+msg: Line map : /gpfs/fs1/anisaxena/spack/opt/spack/linux-ubuntu18.04-x86_64/gcc-7.5.0/hpctoolkit-2021.03.01-ldibk7erkgwxmpbptvfdiybvskgtiiap/lib/hpctoolkit/ext-libs/libmonitor.so.0.0.0
+msg: Line map : /gpfs/fs1/anisaxena/spack/opt/spack/linux-ubuntu18.04-x86_64/gcc-7.5.0/hpctoolkit-2021.03.01-ldibk7erkgwxmpbptvfdiybvskgtiiap/lib/hpctoolkit/libhpcrun_io.so.0.0.0
+msg: Line map : /gpfs/fs1/SHARE/Utils/CUDA/11.3.0.0_465.19.01/targets/x86_64-linux/lib/libcudart.so.11.3.58
+msg: Line map : /gpfs/fs1/SHARE/Utils/NCCL/2.9.9-1/GCC-10.3.0_CUDA-11.3.1.0_465.19.01/lib/libnccl.so.2.9.9
+msg: Line map : /gpfs/fs1/SHARE/Utils/OpenMPI/4.1.1/GCC-10.3.0_CUDA-11.3.1.0_465.19.01_UCX-1.10.1_HWLoc-2.4.1_ZLib-1.2.11_NUMActl-2.0.14/lib/libmpi.so.40.30.1
+msg: Line map : /lib/x86_64-linux-gnu/libm-2.27.so
+msg: Line map : /lib/x86_64-linux-gnu/libpthread-2.27.so
+msg: Line map : /lib/x86_64-linux-gnu/libc-2.27.so
+msg: Line map : /lib/x86_64-linux-gnu/libdl-2.27.so
+msg: Line map : /gpfs/fs1/SHARE/Utils/OpenMPI/4.1.1/GCC-10.3.0_CUDA-11.3.1.0_465.19.01_UCX-1.10.1_HWLoc-2.4.1_ZLib-1.2.11_NUMActl-2.0.14/lib/libopen-rte.so.40.30.1
+msg: Line map : /gpfs/fs1/SHARE/Utils/OpenMPI/4.1.1/GCC-10.3.0_CUDA-11.3.1.0_465.19.01_UCX-1.10.1_HWLoc-2.4.1_ZLib-1.2.11_NUMActl-2.0.14/lib/libopen-pal.so.40.30.1
+msg: Line map : /gpfs/fs1/SHARE/Utils/UCX/1.10.1/GCC-10.3.0_CUDA-11.3.1.0_465.19.01_NUMActl-2.0.14/lib/libucp.so.0.0.0
+msg: Line map : /gpfs/fs1/SHARE/Utils/UCX/1.10.1/GCC-10.3.0_CUDA-11.3.1.0_465.19.01_NUMActl-2.0.14/lib/libuct.so.0.0.0
+msg: Line map : /gpfs/fs1/SHARE/Utils/UCX/1.10.1/GCC-10.3.0_CUDA-11.3.1.0_465.19.01_NUMActl-2.0.14/lib/libucs.so.0.0.0
+msg: Line map : /gpfs/fs1/SHARE/Utils/UCX/1.10.1/GCC-10.3.0_CUDA-11.3.1.0_465.19.01_NUMActl-2.0.14/lib/libucm.so.0.0.0
+msg: Line map : /usr/lib/x86_64-linux-gnu/librdmacm.so.1.3.32.0
+BFD: DWARF error: section .debug_info is larger than its filesize! (0x7dd91 vs 0x5d0a0)
+msg: Line map : /usr/lib/x86_64-linux-gnu/libibverbs.so.1.11.32.0
+msg: Line map : /usr/lib/x86_64-linux-gnu/libnvidia-ml.so.460.32.03
+msg: Line map : /usr/lib/x86_64-linux-gnu/libevent_core-2.1.so.6.0.2
+msg: Line map : /gpfs/fs1/anisaxena/spack/opt/spack/linux-ubuntu18.04-x86_64/gcc-7.5.0/hpctoolkit-2021.03.01-ldibk7erkgwxmpbptvfdiybvskgtiiap/lib/hpctoolkit/libhpcrun_audit.so.0.0.0
+msg: Line map : [vdso]
+msg: Line map : /usr/lib/x86_64-linux-gnu/libcuda.so.460.32.03
+msg: Line map : /gpfs/fs1/anisaxena/spack/opt/spack/linux-ubuntu18.04-x86_64/gcc-7.5.0/cuda-11.3.1-fgqvhal4hngxpwnl23eikc4i4um6beeh/targets/x86_64-linux/lib/libcudart.so.11.3.109
+msg: Line map : /gpfs/fs1/SHARE/Utils/CUDA/11.3.0.0_465.19.01/extras/CUPTI/lib64/libcupti.so.2021.1.0
+msg: Line map : /gpfs/fs1/SHARE/Utils/UCX/1.10.1/GCC-10.3.0_CUDA-11.3.1.0_465.19.01_NUMActl-2.0.14/lib/ucx/libuct_cuda.so.0.0.0
+msg: Line map : /gpfs/fs1/SHARE/Utils/UCX/1.10.1/GCC-10.3.0_CUDA-11.3.1.0_465.19.01_NUMActl-2.0.14/lib/ucx/libuct_cuda_gdrcopy.so.0.0.0
+msg: Line map : /gpfs/fs1/SHARE/Utils/UCX/1.10.1/GCC-10.3.0_CUDA-11.3.1.0_465.19.01_NUMActl-2.0.14/lib/ucx/libuct_ib.so.0.0.0
+msg: Line map : /usr/lib/x86_64-linux-gnu/libmlx5.so.1.16.32.0
+msg: Line map : /gpfs/fs1/SHARE/Utils/UCX/1.10.1/GCC-10.3.0_CUDA-11.3.1.0_465.19.01_NUMActl-2.0.14/lib/ucx/libuct_rdmacm.so.0.0.0
+msg: Line map : /gpfs/fs1/SHARE/Utils/UCX/1.10.1/GCC-10.3.0_CUDA-11.3.1.0_465.19.01_NUMActl-2.0.14/lib/ucx/libuct_cma.so.0.0.0
+msg: Line map : /gpfs/fs1/SHARE/Utils/UCX/1.10.1/GCC-10.3.0_CUDA-11.3.1.0_465.19.01_NUMActl-2.0.14/lib/ucx/libucm_cuda.so.0.0.0
+msg: Line map : /gpfs/fs1/SHARE/Utils/CUDA/11.3.0.0_465.19.01/extras/CUPTI/lib64/libnvperf_host.so
+msg: STRUCTURE: /gpfs/fs1/anisaxena/multi-gpu-programming-models/nccl/hpctoolkit-jacobi-measurements-157450/gpubins/2eaa723b9a34939a4a962603362ce8f2.gpubin
+msg: STRUCTURE: /gpfs/fs1/anisaxena/multi-gpu-programming-models/nccl/hpctoolkit-jacobi-measurements-157450/gpubins/33ff2e660b9cc21c66a95f3ef2af0264.gpubin
+msg: Populating Experiment database: /gpfs/fs1/anisaxena/multi-gpu-programming-models/nccl/hpctoolkit-jacobi-database-157450
+===DONE===

@@ -140,11 +140,21 @@ int main(int argc, char* argv[]) {
     MPI_CALL(MPI_Comm_rank(MPI_COMM_WORLD, &rank));
     int size;
     MPI_CALL(MPI_Comm_size(MPI_COMM_WORLD, &size));
+<<<<<<< HEAD
 
     const int iter_max = get_argval<int>(argv, argv + argc, "-niter", 1000);
     const int nccheck = get_argval<int>(argv, argv + argc, "-nccheck", 1);
     const int nx = get_argval<int>(argv, argv + argc, "-nx", 16384);
     const int ny = get_argval<int>(argv, argv + argc, "-ny", 16384);
+=======
+    int num_devices = 0;
+    cudaGetDeviceCount(&num_devices);
+
+    const int iter_max = get_argval<int>(argv, argv + argc, "-niter", 1000);
+    const int nccheck = get_argval<int>(argv, argv + argc, "-nccheck", 1);
+    const int nx = get_argval<int>(argv, argv + argc, "-nx", 20480);
+    const int ny = get_argval<int>(argv, argv + argc, "-ny", 20480);
+>>>>>>> To be included in gpubootcamp as submodule for development
     const bool csv = get_arg(argv, argv + argc, "-csv");
 
     int local_rank = -1;
@@ -158,7 +168,11 @@ int main(int argc, char* argv[]) {
         MPI_CALL(MPI_Comm_free(&local_comm));
     }
 
+<<<<<<< HEAD
     CUDA_RT_CALL(cudaSetDevice(local_rank));
+=======
+    CUDA_RT_CALL(cudaSetDevice(local_rank % num_devices));
+>>>>>>> To be included in gpubootcamp as submodule for development
     CUDA_RT_CALL(cudaFree(0));
 
     real* a_ref_h;

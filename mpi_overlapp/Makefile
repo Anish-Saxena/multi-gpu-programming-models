@@ -19,7 +19,11 @@ else
         NVCC_FLAGS = -DHAVE_CUB
 endif
 NVCC_FLAGS += -lineinfo $(GENCODE_FLAGS) -std=c++14
+<<<<<<< HEAD
 MPICXX_FLAGS = -DUSE_NVTX -I$(CUDA_HOME)/include -std=c++14
+=======
+MPICXX_FLAGS = -DUSE_NVTX -g -I$(CUDA_HOME)/include -std=c++14
+>>>>>>> To be included in gpubootcamp as submodule for development
 LD_FLAGS = -L$(CUDA_HOME)/lib64 -lcudart -lnvToolsExt
 jacobi: Makefile jacobi.cpp jacobi_kernels.o
 	$(MPICXX) $(MPICXX_FLAGS) jacobi.cpp jacobi_kernels.o $(LD_FLAGS) -o jacobi

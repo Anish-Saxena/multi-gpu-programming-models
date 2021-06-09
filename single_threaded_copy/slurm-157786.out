@@ -1,0 +1,41 @@
+rm -f jacobi jacobi.qdrep
+nvcc -DHAVE_CUB -Xcompiler -fopenmp -lineinfo -DUSE_NVTX -lnvToolsExt -gencode arch=compute_70,code=sm_70 -gencode arch=compute_80,code=sm_80 -gencode arch=compute_80,code=compute_80 -std=c++14 jacobi.cu -o jacobi
+Single GPU jacobi relaxation: 1000 iterations on 16384 x 16384 mesh with norm check every 1 iterations
+    0, 31.999022
+  100, 0.897983
+  200, 0.535684
+  300, 0.395651
+  400, 0.319039
+  500, 0.269961
+  600, 0.235509
+  700, 0.209829
+  800, 0.189854
+  900, 0.173818
+Jacobi relaxation: 1000 iterations on 16384 x 16384 mesh with norm check every 1 iterations
+    0, 31.999023
+  100, 0.897983
+  200, 0.535685
+  300, 0.395651
+  400, 0.319039
+  500, 0.269961
+  600, 0.235510
+  700, 0.209829
+  800, 0.189854
+  900, 0.173818
+Num GPUs: 8.
+16384x16384: 1 GPU:   3.3806 s, 8 GPUs:   1.0552 s, speedup:     3.20, efficiency:    40.05 
+msg: begin serial analysis of 3f961ff28bbfa25f027d50cde51a9a71.gpubin
+msg: end serial analysis of 3f961ff28bbfa25f027d50cde51a9a71.gpubin
+msg: STRUCTURE: /gpfs/fs1/anisaxena/multi-gpu-programming-models/single_threaded_copy/jacobi
+msg: Line map : /lib/x86_64-linux-gnu/ld-2.27.so
+msg: Line map : /gpfs/fs1/anisaxena/spack/opt/spack/linux-ubuntu18.04-x86_64/gcc-7.5.0/hpctoolkit-2021.03.01-ldibk7erkgwxmpbptvfdiybvskgtiiap/lib/hpctoolkit/libhpcrun.so
+msg: Line map : /gpfs/fs1/anisaxena/spack/opt/spack/linux-ubuntu18.04-x86_64/gcc-7.5.0/hpctoolkit-2021.03.01-ldibk7erkgwxmpbptvfdiybvskgtiiap/lib/hpctoolkit/ext-libs/libmonitor.so.0.0.0
+msg: Line map : /gpfs/fs1/anisaxena/spack/opt/spack/linux-ubuntu18.04-x86_64/gcc-7.5.0/hpctoolkit-2021.03.01-ldibk7erkgwxmpbptvfdiybvskgtiiap/lib/hpctoolkit/libhpcrun_io.so.0.0.0
+msg: Line map : /lib/x86_64-linux-gnu/libpthread-2.27.so
+msg: Line map : /lib/x86_64-linux-gnu/libc-2.27.so
+msg: Line map : [vdso]
+msg: Line map : /usr/lib/x86_64-linux-gnu/libcuda.so.460.32.03
+msg: Line map : /gpfs/fs1/anisaxena/spack/opt/spack/linux-ubuntu18.04-x86_64/gcc-7.5.0/cuda-11.3.1-fgqvhal4hngxpwnl23eikc4i4um6beeh/extras/CUPTI/lib64/libcupti.so.2021.1.1
+msg: STRUCTURE: /gpfs/fs1/anisaxena/multi-gpu-programming-models/single_threaded_copy/hpctoolkit-jacobi-measurements-157786/gpubins/3f961ff28bbfa25f027d50cde51a9a71.gpubin
+msg: Populating Experiment database: /gpfs/fs1/anisaxena/multi-gpu-programming-models/single_threaded_copy/hpctoolkit-jacobi-database-157786
+===DONE===

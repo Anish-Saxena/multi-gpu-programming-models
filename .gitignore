@@ -1,3 +1,9 @@
 *.o
 jacobi
+<<<<<<< HEAD
 test-*.log
+=======
+hpctoolkit*/
+*.hpcstruct
+*.zip
+>>>>>>> To be included in gpubootcamp as submodule for development
